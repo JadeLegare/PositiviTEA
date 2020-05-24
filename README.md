@@ -1,4 +1,8 @@
-# PositiviTea
+# PositiviTea 
+#### Self Care App
+#### Work in Progress
 
-A flutter app to promote daily self care activities. You can't pour from an empty cup <3
 
+An app developed using Dart and Flutter to promote daily self care activities. You can't pour from an empty cup <3
+
+## Demo Content
