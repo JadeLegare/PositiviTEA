@@ -132,6 +132,20 @@ class DistractPage extends StatefulWidget{
 }
 
 class _DistractPageState extends State<DistractPage>{
+  Map<String, bool> masterDistractValues = {
+    'Clean a room in your house': false, 
+    'Bake/cook a favourite food': false,
+    'Listen to music': false,
+    'Build something': false,
+    'Help a friend or family member': false, 
+    'Make something nice for someone else': false,
+    'Watch an emotional TV show': false, 
+    'Listen to emotion music': false,
+    'Leave the situation for awhile': false, 
+    'Dont think about the painful situation' : false,
+    'Repeat songs in your mind': false,
+    'Watch TV or read': false,
+  };
   Map<String, bool> activitiesValues = {
     'Clean a room in your house': false, 
     'Bake/cook a favourite food': false,
@@ -174,7 +188,8 @@ class _DistractPageState extends State<DistractPage>{
              ],
              ),
          ),
-        
+        /*
+        //ACTIVITES HEADING
          Container(
            padding: EdgeInsets.all(4.0),
            color: Color.fromRGBO(124, 102, 123, .7),
@@ -185,24 +200,27 @@ class _DistractPageState extends State<DistractPage>{
                   style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
          ),
-         
+         */
          Expanded(
            child: ListView(
-            children: activitiesValues.keys.map((String key){
+
+            children: masterDistractValues.keys.map((String key){
           
               return new CheckboxListTile(
                 title: new Text(key),
-                value: activitiesValues[key],
+                value: masterDistractValues[key],
                 onChanged: (bool value){
                   setState(() {
-                    activitiesValues[key] = value;
+                    masterDistractValues[key] = value;
                   });
                 },
               );
-            }).toList(),
+            },
+            ).toList(),
            )
          ),
-
+        /*
+        // CONTRIBUTIONS AND EMOTIONS
          Container(
            padding: EdgeInsets.all(4.0),
            color: Color.fromRGBO(196, 143, 145, .7),
@@ -227,10 +245,14 @@ class _DistractPageState extends State<DistractPage>{
                   });
                 },
               );
+              
             }).toList(),
            )
          ),
+         */
 
+        /*
+        //PUSHING AWAY AND THOUGHTS
          Container(
            padding: EdgeInsets.all(4.0),
            color: Color.fromRGBO(245, 195, 171, .7),
@@ -258,6 +280,7 @@ class _DistractPageState extends State<DistractPage>{
             }).toList(),
            )
          ),
+         */
        ],
      ),
        
@@ -547,8 +570,14 @@ class ImprovePage extends StatelessWidget{
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int _cupsCounter = 0;
   var screenText = "No Tea";
   var _animation = "Empty";
+  bool cupOne = false;
+  bool cupTwo = false;
+  bool cupThree = false;
+  bool cupFour = false;
+  bool cupFive = false;
 
   void _incrementCounter() {
     setState(() {
@@ -576,6 +605,30 @@ class _MyHomePageState extends State<MyHomePage> {
       else if(_counter == 3){
         screenText = "Congrats! You accomplished your daily goal!";
         _animation = "threeThird_filling";
+        _cupsCounter ++;
+        if(_cupsCounter == 0){
+          cupOne = false;
+          cupTwo = false;
+          cupThree = false;
+          cupFour = false;
+          cupFive = false;
+        }
+        if(_cupsCounter >= 1){
+          cupOne = true;
+        }
+        if(_cupsCounter >= 2){
+          cupTwo = true;
+        }
+        if(_cupsCounter >= 3){
+          cupThree = true;
+        }
+        if(_cupsCounter >= 4){
+          cupFour = true;
+        }
+        if(_cupsCounter >= 5){
+          cupFive = true;
+          _cupsCounter = 0;
+        }
         
       }
       else if(_counter == 4){
@@ -636,6 +689,55 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           
           children: <Widget>[
+            Row(
+              children: <Widget>[
+                Text(
+                  'Cups of Tea: ', 
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                Visibility(
+                child: Icon(
+                Icons.cloud_circle,
+                color: Colors.pinkAccent,
+                size: 30.0,
+                ),
+                visible: cupOne,
+                ),
+                Visibility(
+                child: Icon(
+                Icons.cloud_circle,
+                color: Colors.pinkAccent,
+                size: 30.0,
+                ),
+                visible: cupTwo,
+                ),
+                Visibility(
+                child: Icon(
+                Icons.cloud_circle,
+                color: Colors.pinkAccent,
+                size: 30.0,
+                ),
+                visible: cupThree,
+                ),
+                 Visibility(
+                child: Icon(
+                Icons.cloud_circle,
+                color: Colors.pinkAccent,
+                size: 30.0,
+                ),
+                visible: cupFour,
+                ),
+                 Visibility(
+                child: Icon(
+                Icons.cloud_circle,
+                color: Colors.pinkAccent,
+                size: 30.0,
+                ),
+                visible: cupFive,
+                ),
+              ],
+            ),
+            
             Expanded(
               child:   FlareActor(
               "assets/animations/TeaCup.flr",
