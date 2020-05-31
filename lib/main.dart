@@ -211,7 +211,13 @@ class _DistractPageState extends State<DistractPage>{
                 value: masterDistractValues[key],
                 onChanged: (bool value){
                   setState(() {
+                    //TODO: update home screen values and animations with checked tasks
                     masterDistractValues[key] = value;
+                    if(value){
+                      //TODO: add pop up screen to say "you completed _BLANK_. click to return to home screen"
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    }
                   });
                 },
               );
@@ -578,7 +584,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool cupThree = false;
   bool cupFour = false;
   bool cupFive = false;
-
+  //TODO: Restructure counter method and class to access in other classes
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
