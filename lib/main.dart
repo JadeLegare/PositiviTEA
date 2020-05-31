@@ -781,3 +781,13 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+class Helper{
+  int helperCounter = 0;
+
+  void incrementCounter(){
+    helperCounter++;
+
+  
+  }
+}
